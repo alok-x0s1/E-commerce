@@ -6,6 +6,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const connectDB = require("./utils/db");
+const { hashPassword } = require("./utils/hashPassword");
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,10 +17,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 
+const userRouter = require("./routes/user.route")
+
 //routes
-app.use('/api/v1/owners')
-
-
+app.use('/api/v1/users', userRouter)
 
 connectDB();
 app.listen(PORT, () => {

@@ -10,6 +10,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    username : {
+        type: String,
+        trim: true,
+        unique: true
+    },
     password : {
         type: String
     },
@@ -19,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     picture : {
         type: String
     },
-    card : [{
+    cart : [{
         type: String
     }],
     orders : [{
