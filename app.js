@@ -22,6 +22,13 @@ const userRouter = require("./routes/user.route")
 //routes
 app.use('/api/v1/users', userRouter)
 
+app.get("/", (req, res) => {
+  res.render("index")
+})
+app.get("/shop", (req, res) => {
+  res.render("shop")
+})
+
 connectDB();
 app.listen(PORT, () => {
   console.log(`Server is started at port : ${PORT}`);

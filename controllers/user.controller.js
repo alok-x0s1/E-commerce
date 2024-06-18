@@ -42,7 +42,7 @@ const signupUser = async (req, res) => {
       email: user.email,
     });
 
-    return res.cookie("token", token).redirect("/profile");
+    return res.cookie("token", token).redirect("/shop");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Server error. Please try again later.");
