@@ -17,9 +17,10 @@ const signupUser = async (req, res) => {
 
     if (existedUser) {
       req.flash("error", "Something went wrong : User with this username or email already exists.");
-      return res
-        .status(400)
-        .send("User with this username or email already exists. Please login.");
+      return res.redirect("/")
+      // return res
+      //   .status(400)
+      //   .send("User with this username or email already exists. Please login.");
     }
 
     const hashedPassword = await hashPassword(password);
@@ -34,7 +35,8 @@ const signupUser = async (req, res) => {
 
     if (!createdUser) {
       req.flash("error", "Something went wrong : While creating user");
-      return res.status(500).send("Server error while creating the user.");
+      return res.redirect("/")
+      // return res.status(500).send("Server error while creating the user.");
     }
 
     const token = generateToken({
@@ -47,7 +49,8 @@ const signupUser = async (req, res) => {
   } catch (error) {
     console.error(error);
     req.flash("error", "Something went wrong");
-    return res.status(500).send("Server error. Please try again later.");
+    return res.redirect("/")
+    // return res.status(500).send("Server error. Please try again later.");
   }
 };
 
@@ -56,7 +59,8 @@ const loginUser = async (req, res) => {
 
   if(!(email || username )) {
     req.flash("error", "All fields are required.");
-    return res.status(400).send("All fields are required");
+    return res.redirect("/")
+    // return res.status(400).send("All fields are required");
   }
 
   try {
@@ -66,17 +70,19 @@ const loginUser = async (req, res) => {
   
     if (!existedUser) {
       req.flash("error", "User with this username or email not exists, Please login");
-      return res
-        .status(400)
-        .send("User with this username or email not exists. Please signup.");
+      return res.redirect("/")
+      // return res
+        // .status(400)
+        // .send("User with this username or email not exists. Please signup.");
     }
 
     const isPasswordCorrect = await verifyPassword(password, existedUser.password)
     if(!isPasswordCorrect) {
       req.flash("error", "Incorrect password. Please try again");
-      return res
-        .status(400)
-        .send("Incorrect password. Please try again.");
+      return res.redirect("/")
+      // return res
+      //   .status(400)
+      //   .send("Incorrect password. Please try again.");
     }
 
     const token = generateToken({
@@ -89,7 +95,8 @@ const loginUser = async (req, res) => {
   } catch (error) {
     console.error(error);
     req.flash("error", "Something went wrong");
-    return res.status(500).send("Server error. Please try again later.");
+    return res.redirect("/")
+    // return res.status(500).send("Server error. Please try again later.");
   }
 };
 

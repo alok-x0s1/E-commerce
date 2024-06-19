@@ -27,10 +27,14 @@ app.use(flash());
 // Imports
 const userRouter = require("./routes/user.route");
 const indexRouter = require("./routes/index");
+const ownerRouter = require("./routes/owner.route");
+const productRouter = require("./routes/product.route");
 
 // Routes
 app.use("/", indexRouter);
 app.use("/users", userRouter);
+app.use("/owner", ownerRouter);
+app.use("/owner/products", productRouter);
 
 connectDB();
 app.listen(PORT, () => {

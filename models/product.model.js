@@ -5,8 +5,7 @@ const ProductSchema = new mongoose.Schema({
         type: String
     },
     image : {
-        type: String,
-        unique: true
+        type: Buffer
     },
     bgColor : {
         type: String
@@ -20,7 +19,7 @@ const ProductSchema = new mongoose.Schema({
     price : {
         type: Number
     },
-    dicount : {
+    discount : {
         type: Number,
         default: 0
     }
